@@ -7,7 +7,7 @@ find_package(reach REQUIRED)
 
 find_package(
   catkin REQUIRED
-  COMPONENTS eigen_conversions
+  COMPONENTS tf2_eigen
              interactive_markers
              moveit_core
              moveit_msgs
@@ -21,7 +21,7 @@ catkin_package(
   LIBRARIES
   ${PROJECT_NAME}_plugins
   CATKIN_DEPENDS
-  eigen_conversions
+  tf2_eigen
   interactive_markers
   moveit_core
   moveit_msgs

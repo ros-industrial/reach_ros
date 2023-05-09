@@ -20,7 +20,7 @@
 #include <geometric_shapes/shapes.h>
 #include <reach/types.h>
 #include <ros/ros.h>
-#include <eigen_conversions/eigen_msg.h>
+#include <tf2_eigen/tf2_eigen.h>
 
 const static double ARROW_SCALE_RATIO = 6.0;
 const static double NEIGHBOR_MARKER_SCALE_RATIO = ARROW_SCALE_RATIO / 2.0;
@@ -75,7 +75,7 @@ visualization_msgs::Marker makeVisual(const reach::ReachRecord& r, const std::st
 
   // Convert back to geometry_msgs pose
   geometry_msgs::Pose msg;
-  tf::poseEigenToMsg(goal_eigen, msg);
+  tf2::fromMsg(goal_eigen, msg);
   marker.pose = msg;
 
   marker.scale.x = scale;
