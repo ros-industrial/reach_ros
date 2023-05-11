@@ -74,8 +74,7 @@ visualization_msgs::Marker makeVisual(const reach::ReachRecord& r, const std::st
   Eigen::Isometry3d goal_eigen = r.goal * rot_flip_normal * rot_x_to_z;
 
   // Convert back to geometry_msgs pose
-  geometry_msgs::Pose msg;
-  tf2::fromMsg(goal_eigen, msg);
+  geometry_msgs::Pose msg = tf2::toMsg(goal_eigen);
   marker.pose = msg;
 
   marker.scale.x = scale;
