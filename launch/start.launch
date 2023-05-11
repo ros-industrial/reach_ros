@@ -8,5 +8,6 @@
       <param name="config_file" value="$(arg config_file)"/>
       <param name="config_name" value="$(arg config_name)"/>
       <param name="results_dir" value="$(arg results_dir)"/>
+      <env name="REACH_PLUGINS" value="reach_ros_plugins"/>
     </node>
 </launch>
