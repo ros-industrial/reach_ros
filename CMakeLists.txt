@@ -46,7 +46,9 @@ add_library(
   # IK Solver
   src/ik/moveit_ik_solver.cpp
   # Display
-  src/display/ros_display.cpp)
+  src/display/ros_display.cpp
+  # Target pose generator
+  src/target_pose_generator/transformed_point_cloud_target_pose_generator.cpp)
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} reach::reach)
 
 # Plugin Library
