@@ -35,9 +35,9 @@ catkin_package(
 
 include_directories(${catkin_INCLUDE_DIRS} include)
 
-# Plugins
+# Plugin Implementations
 add_library(
-  ${PROJECT_NAME}_plugins
+  ${PROJECT_NAME}
   src/utils.cpp
   # Evaluator
   src/evaluation/manipulability_moveit.cpp
@@ -46,8 +46,14 @@ add_library(
   # IK Solver
   src/ik/moveit_ik_solver.cpp
   # Display
-  src/display/ros_display.cpp)
-target_link_libraries(${PROJECT_NAME}_plugins ${catkin_LIBRARIES} reach::reach)
+  src/display/ros_display.cpp
+  # Target pose generator
+  src/target_pose_generator/transformed_point_cloud_target_pose_generator.cpp)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} reach::reach)
+
+# Plugin Library
+add_library(${PROJECT_NAME}_plugins SHARED src/plugins.cpp)
+target_link_libraries(${PROJECT_NAME}_plugins ${PROJECT_NAME})
 
 # Reach study node
 add_executable(${PROJECT_NAME}_node src/reach_study_node.cpp)
@@ -65,7 +71,7 @@ add_subdirectory(demo)
 # ######################################################################################################################
 
 install(
-  TARGETS ${PROJECT_NAME}_plugins ${PROJECT_NAME}_node
+  TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_plugins ${PROJECT_NAME}_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
