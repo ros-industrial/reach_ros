@@ -6,6 +6,25 @@ This package contains the ROS1-based plugin implemenations of REACH kinematics, 
 
 ![REACH ROS](demo/docs/reach_study_demo.gif)
 
+## Installation
+First, clone the repository into a `catkin` workspace
+``` bash
+cd ~/reach_ws/src
+git clone https://github.com/ros-industrial/reach_ros.git
+cd ..
+```
+
+Install the dependencies
+``` bash
+vcs import src < src/reach_ros/dependencies.repos
+rosdep install --from-paths src --ignore-src -r -y
+```
+
+Build the repository
+```
+catkin build
+```
+
 ## Demo
 A simple demonstration of the capability of this repository is provided in the `demo` sub-directory.
 See the [instructions](demo/README.md) for details on how to run the demo.
