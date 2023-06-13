@@ -115,7 +115,7 @@ Parameters:
 - **`touch_links`**
   - The names of the robot links with which the reach object mesh is allowed to collide
 - **`exponent`**
-  - score = (closest_distance_to_collision / distance_threshold)^exponent.
+  - score = min(abs(closest_distance_to_collision / distance_threshold), 1.0)^exponent.
 
 ### Joint Penalty
 
