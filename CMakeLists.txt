@@ -19,7 +19,7 @@ catkin_package(
   INCLUDE_DIRS
   include
   LIBRARIES
-  ${PROJECT_NAME}_plugins
+  ${PROJECT_NAME}
   CATKIN_DEPENDS
   tf2_eigen
   interactive_markers
