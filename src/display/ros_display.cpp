@@ -100,7 +100,7 @@ void ROSDisplay::showReachNeighborhood(const std::map<std::size_t, reach::ReachR
   }
 }
 
-void ROSDisplay::setCollisionMarker(std::string collision_mesh_filename, const std::string collision_mesh_frame)
+void ROSDisplay::setCollisionMarker(const std::string& collision_mesh_filename, const std::string& collision_mesh_frame)
 {
   visualization_msgs::Marker marker;
   marker.header.frame_id = collision_mesh_frame;

@@ -11,6 +11,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <build_depend>ros_industrial_cmake_boilerplate</build_depend>
   <depend>tf2_eigen</depend>
   <depend>interactive_markers</depend>
   <depend>moveit_core</depend>

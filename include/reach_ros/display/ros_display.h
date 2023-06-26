@@ -17,7 +17,6 @@
 #define REACH_ROS_ROS_REACH_DISPLAY_H
 
 #include <reach/interfaces/display.h>
-
 #include <interactive_markers/interactive_marker_server.h>
 #include <ros/node_handle.h>
 #include <ros/publisher.h>
@@ -36,7 +35,7 @@ public:
   void showResults(const reach::ReachResult& db) const override;
   void showReachNeighborhood(const std::map<std::size_t, reach::ReachRecord>& neighborhood) const override;
 
-  void setCollisionMarker(std::string collision_mesh_filename, const std::string collision_mesh_frame);
+  void setCollisionMarker(const std::string& collision_mesh_filename, const std::string& collision_mesh_frame);
 
 protected:
   const std::string kinematic_base_frame_;

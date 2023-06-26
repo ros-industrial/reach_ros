@@ -1,7 +1,9 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(reach_ros)
+cmake_minimum_required(VERSION 3.10.0)
 
-add_compile_options(-std=c++14)
+# Extract package name and version from package.xml
+find_package(ros_industrial_cmake_boilerplate REQUIRED)
+extract_package_metadata(pkg)
+project(${pkg_extracted_name} VERSION ${pkg_extracted_version} LANGUAGES CXX)
 
 find_package(reach REQUIRED)
 
@@ -19,7 +21,7 @@ catkin_package(
   INCLUDE_DIRS
   include
   LIBRARIES
-  ${PROJECT_NAME}_plugins
+  ${PROJECT_NAME}
   CATKIN_DEPENDS
   tf2_eigen
   interactive_markers
@@ -54,6 +56,7 @@ target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} reach::reach)
 # Plugin Library
 add_library(${PROJECT_NAME}_plugins SHARED src/plugins.cpp)
 target_link_libraries(${PROJECT_NAME}_plugins ${PROJECT_NAME})
+target_cxx_version(${PROJECT_NAME}_plugins PUBLIC VERSION 14)
 
 # Reach study node
 add_executable(${PROJECT_NAME}_node src/reach_study_node.cpp)
@@ -62,6 +65,7 @@ target_link_libraries(
   ${catkin_LIBRARIES}
   yaml-cpp
   reach::reach)
+target_cxx_version(${PROJECT_NAME}_node PUBLIC VERSION 14)
 
 # Demo
 add_subdirectory(demo)
