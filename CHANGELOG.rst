@@ -2,6 +2,18 @@
 Changelog for package reach_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge pull request `#10 <https://github.com/marip8/reach_ros/issues/10>`_ from ros-industrial/updates
+  Minor Updates
+* Use RICB in CMakeLists
+* Update function to pass by reference
+* Export reach_ros library target
+* Merge pull request `#9 <https://github.com/marip8/reach_ros/issues/9>`_ from ros-industrial/fix/plugin
+  Fixed typo in plugin export
+* Fixed typo in plugin export
+* Contributors: Michael Ripperger
+
 1.1.0 (2023-06-13)
 ------------------
 * Merge pull request `#8 <https://github.com/marip8/reach_ros/issues/8>`_ from marip8/update/reach
