@@ -2,8 +2,8 @@
 Changelog for package reach_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.1.1 (2023-09-07)
+------------------
 * Merge pull request `#10 <https://github.com/marip8/reach_ros/issues/10>`_ from ros-industrial/updates
   Minor Updates
 * Use RICB in CMakeLists
