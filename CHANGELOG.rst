@@ -2,6 +2,16 @@
 Changelog for package reach_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge pull request `#15 <https://github.com/ros-industrial/reach_ros/issues/15>`_ from ros-industrial/update/demo-yaml
+  Use YAML anchors in reach study config files to simplify
+* Merge pull request `#14 <https://github.com/ros-industrial/reach_ros/issues/14>`_ from ros-industrial/update/ci
+  Updated CI to run on tag push and workflow dispatch
+* Updated CI to run on tag push and workflow dispatch
+* Use YAML anchors in reach study config files to simplify
+* Contributors: Michael Ripperger
+
 1.1.1 (2023-09-07)
 ------------------
 * Merge pull request `#10 <https://github.com/marip8/reach_ros/issues/10>`_ from ros-industrial/updates
