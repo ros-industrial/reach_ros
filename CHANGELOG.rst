@@ -2,8 +2,8 @@
 Changelog for package reach_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.1.2 (2023-09-22)
+------------------
 * Merge pull request `#15 <https://github.com/ros-industrial/reach_ros/issues/15>`_ from ros-industrial/update/demo-yaml
   Use YAML anchors in reach study config files to simplify
 * Merge pull request `#14 <https://github.com/ros-industrial/reach_ros/issues/14>`_ from ros-industrial/update/ci
