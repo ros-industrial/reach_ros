@@ -20,6 +20,7 @@
 #include <moveit/planning_scene/planning_scene.h>
 #include <moveit_msgs/PlanningScene.h>
 #include <reach/plugin_utils.h>
+#include <reach/utils.h>
 #include <yaml-cpp/yaml.h>
 
 namespace
@@ -44,6 +45,9 @@ MoveItIKSolver::MoveItIKSolver(moveit::core::RobotModelConstPtr model, const std
 {
   if (!jmg_)
     throw std::runtime_error("Failed to initialize joint model group for planning group '" + planning_group + "'");
+  if (!jmg_->getSolverInstance())
+    throw std::runtime_error("No kinematics solver instantiated for planning group '" + planning_group +
+                             "'. Check that the 'kinematics.yaml' file was loaded as a parameter");
 
   scene_.reset(new planning_scene::PlanningScene(model_));
 
@@ -61,7 +65,7 @@ std::vector<std::vector<double>> MoveItIKSolver::solveIK(const Eigen::Isometry3d
 
   const std::vector<std::string>& joint_names = jmg_->getActiveJointModelNames();
 
-  std::vector<double> seed_subset = utils::transcribeInputMap(seed, joint_names);
+  std::vector<double> seed_subset = reach::extractSubset(seed, joint_names);
   state.setJointGroupPositions(jmg_, seed_subset);
   state.update();
 
