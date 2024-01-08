@@ -63,8 +63,13 @@ double DistancePenaltyMoveIt::calculateScore(const std::map<std::string, double>
   state.setJointGroupPositions(jmg_, pose_subset);
   state.update();
 
-  const double dist = scene_->distanceToCollision(state, scene_->getAllowedCollisionMatrix());
-  const double clipped_distance = std::min(std::abs(dist / dist_threshold_), 1.0);
+  collision_detection::CollisionRequest collision_request;
+  collision_request.distance = true;
+  collision_detection::CollisionResult collision_result;
+  scene_->checkCollision(collision_request, collision_result, state);
+  if (collision_result.collision)
+    return 0.0;
+  const double clipped_distance = std::min(collision_result.distance / dist_threshold_, 1.0);
   return std::pow(clipped_distance, exponent_);
 }
 
