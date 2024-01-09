@@ -21,6 +21,7 @@
 #include <numeric>
 #include <reach/plugin_utils.h>
 #include <yaml-cpp/yaml.h>
+#include <cmath>
 
 static std::vector<Eigen::Index> getJacobianRowSubset(const YAML::Node& config, const std::string& key = "jacobian_row_"
                                                                                                          "subset")
@@ -176,6 +177,34 @@ reach::Evaluator::ConstPtr ManipulabilityRatioFactory::create(const YAML::Node& 
     throw std::runtime_error("Failed to initialize robot model pointer");
 
   return std::make_shared<ManipulabilityRatio>(model, planning_group, jacobian_row_subset);
+}
+
+double ManipulabilityRatioSigmoid::calculateScore(const Eigen::MatrixXd& jacobian_singular_values) const
+{
+  double manipulability = jacobian_singular_values.array().prod();
+  double manipulability_ratio = jacobian_singular_values.minCoeff() / jacobian_singular_values.maxCoeff();
+  double manipulability_scaled = std::sqrt(manipulability);
+  double manipulability_measure = std::sqrt(manipulability_ratio);
+
+  double score = manipulability_measure;
+
+  double shifted_score = 50.0 * (score - 0.15);
+  double sigmoid = 1.0 / (1.0 + std::exp(-shifted_score));
+
+  return sigmoid;
+}
+
+reach::Evaluator::ConstPtr ManipulabilityRatioSigmoidFactory::create(const YAML::Node& config) const
+{
+  auto planning_group = reach::get<std::string>(config, "planning_group");
+  std::vector<Eigen::Index> jacobian_row_subset = getJacobianRowSubset(config);
+
+  utils::initROS();
+  moveit::core::RobotModelConstPtr model = moveit::planning_interface::getSharedRobotModel("robot_description");
+  if (!model)
+    throw std::runtime_error("Failed to initialize robot model pointer");
+
+  return std::make_shared<ManipulabilityRatioSigmoid>(model, planning_group, jacobian_row_subset);
 }
 
 ManipulabilityScaled::ManipulabilityScaled(moveit::core::RobotModelConstPtr model, const std::string& planning_group,
