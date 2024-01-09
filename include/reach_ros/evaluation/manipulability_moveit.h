@@ -56,6 +56,20 @@ struct ManipulabilityMoveItFactory : public reach::EvaluatorFactory
   reach::Evaluator::ConstPtr create(const YAML::Node& config) const override;
 };
 
+class ManipulabilityRatioSigmoid : public ManipulabilityMoveIt
+{
+public:
+  using ManipulabilityMoveIt::ManipulabilityMoveIt;
+  virtual double calculateScore(const Eigen::MatrixXd& jacobian_singular_values) const override;
+};
+
+struct ManipulabilityRatioSigmoidFactory : public reach::EvaluatorFactory
+{
+  using reach::EvaluatorFactory::EvaluatorFactory;
+
+  reach::Evaluator::ConstPtr create(const YAML::Node& config) const override;
+};
+
 /** @brief Computes the manipulability of a robot pose divided by the characteristic length of the robot */
 class ManipulabilityScaled : public ManipulabilityMoveIt
 {
